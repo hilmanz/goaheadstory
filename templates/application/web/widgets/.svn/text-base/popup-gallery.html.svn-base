@@ -1,0 +1,46 @@
+﻿
+<div id="popup-gallery" class="popup">
+    <div class="popup-container">
+    	<a class="closePopup tutup" href="#">&nbsp;</a>
+        <div class="popup-image">
+            <img src="{$assets_domain}content/artist6_original.jpg" />
+        </div><!-- .popup-image-->
+        <div class="galleryStats">
+		  <!--<input type="button" class="button " value="SUBMIT" />-->
+            <a class="statsbox" href="#">
+                <span class="icons icon-eye">&nbsp;</span>
+                <span class="count countView"></span>
+            </a><!-- end .statsbox -->
+            <a class="statsbox" href="#">
+                <span class="icons icon-bubbles">&nbsp;</span>
+                <span class="count countComent"></span>
+            </a><!-- end .statsbox -->
+            <a class="statsbox" href="#">
+                <span class="icons icon-thumbs-up likepop">&nbsp;</span>
+                <span class="count countLike"></span>
+            </a><!-- end .statsbox -->    
+			 <input type="button" class="button savemyartwork" value="Save My Artwork" />
+            <a class="likeButton likepop"  href="#likepop">
+                <span class="icons icon-thumbs-up">&nbsp;</span>
+                Like
+            </a><!-- end .statsbox -->    
+        </div><!-- end .galleryStats -->   
+        <div class="popup-content">
+            <div class="entry">
+            <h3>By OOM LEO</h3>
+<p>The Jakarta born and Bandung educated Yvana Khadija Amelz is without doubt one of the best Indonesian illustrators of her generation. As an illustrator and artist, Ykha is able to visually express her ideas and creativity through drawings, thus channelling her overwhelming feelings into something beautiful, productive and positive.</p>
+            </div>
+        </div><!-- .popup-content-->
+        <div class="comments">
+        	<form class="comment-form">
+            	<label>YOUR COMMENTS</label>
+                <textarea placeholder="Your Comments" name="comentar" maxlength="140" class="max-length commentarstory"></textarea>
+				 <span class="errormessage" style="display:none;">Cek kembali jumlah (maks. 140 karakter).</span>
+                <input type="button" class="button btnComentar" value="SUBMIT" />
+            </form>
+        </div><!-- .comment -->
+        <div class="comment-result">
+           
+        </div><!-- .comment-result -->
+    </div><!-- .popup-body-->
+</div><!-- .popup -->

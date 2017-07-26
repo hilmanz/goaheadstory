@@ -1,0 +1,67 @@
+<div id="theContainer" class="inboxPage">
+    <div class="theContainer">
+        <div class="head-title">
+            <h1 class="fl">View Story</h1>
+        </div> <!-- /.head-title -->
+        <div class="formContent">
+            <form method="POST" action="{$basedomain}aspirationtravia/prosesupdate" enctype="multipart/form-data">
+			<table border=1>
+				<tr>
+					<td>Aspiration Usernamex</td>
+					<td>:</td>
+					<td><input type="hidden" name="startpage" id="startpage" value="{$startPage}" /><input type="hidden" name="hastags" id="hastags" value="{$aspiration.hastags}" />
+					<input type="hidden" name="artisId" id="artisId" value="{$aspiration.artist_id}" /><input type="hidden" name="aspirationusername" id="aspirationusername" value="{$aspiration.username}" />{$aspiration.username}</td>
+				</tr> 
+				<tr>
+					<td>aspiration</td>
+					<td>:</td>
+					<td><input type="hidden" name="aspiration" id="aspiration" value="{$aspiration.aspirasi_user}" />{$aspiration.aspirasi_user}</td>
+				</tr>
+				
+				<tr>
+					<td>Artwork</td>
+					<td>:</td>
+					<td>
+					<input type="hidden" name="aspirasistatus" id="aspirasistatus" value="{$aspiration.aspirasi_status}" />
+					<input type="hidden" name="gambaraspirasiartist" id="gambaraspirasiartist" value="{$aspiration.gambar_aspirasi_artist}" />
+					<img width="300" height="300" src="{if $aspiration.gambar_aspirasi_artist==''}{else} {$basedomainpath}public_assets/{$aspiration.gambar_aspirasi_artist}{/if}"></td>
+				</tr>
+				
+				
+				<tr>
+					<td>Status</td>
+					<td>:</td>
+					<td>
+						<select name="aspirationStatus">
+							<option value="0">UnPublished</option>
+							<option value="1" selected>Published</option>
+						</select>
+					</td>
+				</tr> 
+				<tr>
+					<td>Upload</td>
+					<td>:</td>
+					<td>
+						<input type="file" name="aspirationImagesNew" id="aspirationImagesNew"  value="" />
+					</td>
+				</tr> 
+				<tr>
+					<td>aspiration artis</td>
+					<td>:</td>
+					<td>
+						<textarea style='width:680px;height:229px;' name="aspirationartis" id="aspirationartis" >{$aspiration.aspirasi_artist}</textarea>
+					</td>
+				</tr> 
+				<tr>
+					<td colspan="3" >
+						<input type="submit" name="submit" value="submit" />
+						<input type="button" class="btn" value="Cancel" onclick="javascript: window.location.href='{$basedomain}aspirationtravia';" />	
+						<input type="hidden" name="editit" value="ok" />						
+						<input type="hidden" name="aspirationId" value="{$aspiration.aspirasi_id}" />
+					</td>
+				</tr>
+			</table>
+            </form>
+		</div>
+	</div>
+</div>

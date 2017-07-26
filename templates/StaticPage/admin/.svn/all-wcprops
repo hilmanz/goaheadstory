@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin
+END
+group_edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/group_edit.html
+END
+list_by_group.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/list_by_group.html
+END
+edit.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/edit.html
+END
+group_new.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/group_new.html
+END
+group_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/group_list.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/index.html
+END
+manage.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/manage.html
+END
+new.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/new.html
+END
+list.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/go-ahead-story/!svn/ver/2/trunk/goaheadstory/templates/StaticPage/admin/list.html
+END

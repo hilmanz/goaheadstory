@@ -1,0 +1,10 @@
+2014-02-17 10:11:17 SELECT sm.* FROM admin_users sm LEFT JOIN admin_roles pages ON pages.userid=sm.id WHERE sm.username="asdqwe"  LIMIT 1
+2014-02-17 10:11:17 can login
+2014-02-17 10:11:17 Able to login BEAT
+2014-02-17 10:11:22 
+			SELECT sm.id,sm.name,sm.last_name,sm.img,sm.sex,sm.username,sm.nickname,sm.register_date,sm.StreetName,sm.phone_number,sm.email,sm.last_login,sm.n_status,sm.sex,sm.birthday,cityref.city as cityname,sm.small_img ,sm.description , pagestype.name role, pages.type roletype
+			FROM admin_users sm
+			LEFT JOIN admin_city_reference cityref ON sm.city = cityref.id
+			LEFT JOIN my_pages pages ON sm.id = pages.ownerid
+			LEFT JOIN my_pages_type pagestype ON pages.type = pagestype.id
+			WHERE sm.id = 218 LIMIT 1

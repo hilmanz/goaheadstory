@@ -1,0 +1,28 @@
+﻿
+<div id="popup-artist6" class="popup2 popup-artist">
+    <a class="closePopup" href="#">&nbsp;</a>
+    <div class="popup-body">
+        <div class="col2">
+            <div class="entry">
+            	<div class="col-sidebar">
+           			 <div class="thumbArtist">
+           			 	<img src="{$assets_domain}content/Kiko.jpg" />
+					</div><!-- .thumbArtist -->
+                </div><!-- .col-sidebar -->
+                <div class="col-content">
+           			 <div class="entries">
+            <h3>Kiko Ardiansjah</h3>
+<p>Kiko adalah siswa Kelas Pagi Jakarta Angkatan 6 yang sangat menggemari makanan tidak sehat. Penikmat foto-foto abstrak, geometri dan minimalis. Suka segala hal yang berhubungan dengan kertas dan handcrafting.</p>
+<p>Tidak pernah belajar seni visual dan fotografi secara formal, namun sempat masuk ke Industri periklanan sebagai Graphic Designer/Art Director selama kurang lebih 10 tahun. Saat ini lebih banyak menghabiskan waktu sebagai creative freelancer untuk proyek-proyek komersial, dan menjadi partner Anton Ismael di Brand A sejak 2013.</p>
+<p>foto-foto minimalisnya dapat dilihat melalui akun Instagram: scaraboushka</p>
+					</div><!-- .entries -->
+				</div><!-- .col-content -->
+            </div><!-- .col2 -->
+        </div><!-- .col2 -->
+        <div class="col2">
+            <div class="imgdetail">
+            <img src="{$assets_domain}content/artist6_original.jpg" />
+            </div><!-- .imgdetail-->
+        </div><!-- .col2-->
+    </div><!-- .popup-body-->
+</div><!-- .popup -->

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin/apps
+END
+personalquis-list.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin/apps/personalquis-list.html
+END
+auction-input.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/apps/auction-input.html
+END
+personalquisview.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin/apps/personalquisview.html
+END
+generate-code.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/apps/generate-code.html
+END
+aspiration-travia-list.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin/apps/aspiration-travia-list.html
+END
+administrator-home.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/apps/administrator-home.html
+END
+item-management.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/apps/item-management.html
+END
+changepassword.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/apps/changepassword.html
+END
+redeem-list.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/apps/redeem-list.html
+END
+aspirationtraviaview.html
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin/apps/aspirationtraviaview.html
+END

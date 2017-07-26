@@ -1,0 +1,627 @@
+﻿
+
+<!-- terms content -->
+<section class="page_section" id="gallerypage" attrid='{$registerid}'>  
+    <div class="container">
+    	<div class="galleryList" dataWidth="500" dataStart="0" dataPage="{$totalpage}">
+		{if $aspiration}
+				{section loop=$aspiration name=i}
+				{if $aspiration[i].hastags =='#goahead_lepaskan' }
+					
+						<div class="galleryBox bos-lepaskan">
+					
+				{else}
+					
+						<div class="galleryBox bos-rasakan">
+					
+				{/if}
+					{if $aspiration[i].gambar_aspirasi_artist }
+						<div class="galleryImage">
+						
+							<img src="{$basedomain}public_assets/{$aspiration[i].gambar_aspirasi_artist}" />
+						
+						</div><!-- end .galleryImage -->    
+					{else}
+					<div class="galleryImageBlank">
+						<img src="{$assets_domain}content/gallery_blank.png" />
+					</div><!-- end .galleryImage --> 
+					{/if}
+					<a class="galleriContent  countGallery" href="#popup-gallery" attrGalerry=" {encrypt cid=$aspiration[i].aspirasi_id oCount=$aspiration[i].aspirasi_view caption='view'}" counttype="view" >
+						<p class="galleryText">
+												{$aspiration[i].aspirasi_user}
+						</p>
+						<p class="author">by {$aspiration[i].username|upper}</p>
+					</a>
+					<div class="galleryStats">
+						<a class="statsbox" href="#icon_view">
+							<span class="icons icon-eye countGallery" attrGalerry="{encrypt cid=$aspiration[i].aspirasi_id oCount=$aspiration[i].aspirasi_view caption='view'}" counttype="view" >&nbsp;</span>
+							<span class="count icon_view{$aspiration[i].aspirasi_id}">{$aspiration[i].aspirasi_view}</span>
+						</a><!-- end .statsbox -->
+						<a class="statsbox" href="javascript:void(0)">
+							<span class="icons icon-bubbles" >&nbsp;</span>
+							<span class="count countComent{$aspiration[i].aspirasi_id}">{$aspiration[i].aspirasi_comment}</span>
+						</a><!-- end .statsbox -->
+						<a class="statsbox" href="javascript:void(0)" id="countLike{$aspiration[i].aspirasi_id}">
+							<span class="icons icon-thumbs-up likepop" attrGalerry="{encrypt cid=$aspiration[i].aspirasi_id oCount=$aspiration[i].aspirasi_view caption='like'}" counttype="like">&nbsp;</span>
+							<span class="count countLike{$aspiration[i].aspirasi_id}" >{$aspiration[i].aspirasi_like}</span>
+						</a><!-- end .statsbox -->    
+					</div><!-- end .galleryStats -->    
+				</div><!-- end .galleryBox -->   
+			{/section}
+        		
+            
+		{/if}
+        </div><!-- end .galleryList -->   
+		{include file="application/web/widgets/popup-gallery.html"}
+		{include file="application/web/widgets/popup-gallery-text.html"}
+			<div class="loader" style="display:none">
+            	<img src="{$assets_domain}images/loaderbar.gif" />
+            </div>		
+			<div id="bg-popup" style="display: none;"></div>
+    </div><!-- end .container -->    
+</section>
+
+
+	<script>
+	 var likepages= "{$likepages}";
+	  var commenttoGalerry= "{$commenttoGalerry}";
+	  var mystory = "{$storyPage}";
+{literal}	 
+		$(document).ready(function(){
+			$("#autopopupdetail").trigger("click");
+			src ='';
+			src +=' <li> ';
+			src +='  ';
+			src +='  <input type="text" value="" id="src" placeholder="Search By User..." />';
+			
+			src +='  ';
+			src +='  </li>';
+			$('#navigation').append(src);
+			
+			});
+		
+
+		$(document).on('keyup','#src', function()
+		{
+			var content ='';
+			var srch = $(this).val();
+			var templenght=0;
+			if(srch.length > 3)
+			{
+				var templatelama = $('.galleryList').html();
+				$('.loader').attr('style','display:block');
+				$.ajax({
+					type: "POST",
+					url: basedomain+'?page=goahead&act=getAspiration',
+					data: {srch:srch},
+					dataType: "json",
+					success: function( comnData ){
+						$.each(comnData.aspiration, function( index, value ) {
+										if(value.hastu=='#goahead_lepaskan')
+										{
+											content += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											content += '<div class="galleryBox bos-rasakan"> ';
+										}
+										
+										if(value.asgmb)
+											{
+												content += '<div class="galleryImage">';
+												content += '<img src="'+basedomain+'public_assets/'+value.asgmb+'" />';
+												content +='</div>';
+											}
+										else
+											{
+												content += '<div class="galleryImageBlank">';
+												content += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+												content +='</div>';
+											}
+										
+										content += '<a href="#popup-gallery" class="galleriContent countGallery" attrGalerry="'+value.enuri+'" counttype="view" >';
+									
+										content +='<p class="galleryText">'+value.asuser+'</p>';
+										content +='<p class="author">by '+value.na.toUpperCase()+'</p>';
+										content +='</a>';
+										content +='<div class="galleryStats">';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content += '<span class="icons icon-eye countGallery"  attrGalerry="'+value.enuri+'" counttype="view">&nbsp;</span>';
+										content +='<span class="count icon_view'+value.siad+'">'+value.cCount+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-bubbles">&nbsp;</span>';
+										content +='<span class="count countComent'+value.siad+'">'+value.ascom+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-thumbs-up countGallery" attrGalerry="'+value.enuriLike+'" counttype="view">&nbsp;</span>';
+										content +='<span class="count countLike'+value.siad+'" >'+value.asli+'</span>';
+										content +='</a></div></div>';
+										
+								});
+								$('.galleryList').html(content);
+								$('.galleryList').attr('dataPage',comnData.totalpage);
+								templenght = srch.length;
+								setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+								
+					}
+					});
+					
+			}
+			else if(srch.length==0)
+			{
+				var content ='';
+				$.ajax({
+					type: "POST",
+					url: basedomain+'?page=goahead&act=getAspiration',
+					data: {srch:''},
+					dataType: "json",
+					success: function( comnData ){
+						$.each(comnData.aspiration, function( index, value ) {
+										if(value.hastu=='#goahead_lepaskan')
+										{
+											content += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											content += '<div class="galleryBox bos-rasakan"> ';
+										}
+										
+										if(value.asgmb)
+											{
+												content += '<div class="galleryImage">';
+												content += '<img src="'+basedomain+'public_assets/'+value.asgmb+'" />';
+												content +='</div>';
+											}
+										else
+											{
+												content += '<div class="galleryImageBlank">';
+												content += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+												content +='</div>';
+											}
+										
+										content += '<a  href="#popup-gallery" class="galleriContent countGallery" attrGalerry="'+value.enuri+'" counttype="view" >';
+									
+										content +='<p class="galleryText">'+value.asuser+'</p>';
+										content +='<p class="author">by '+value.na.toUpperCase()+'</p>';
+										content +='</a>';
+										content +='<div class="galleryStats">';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content += '<span class="icons icon-eye countGallery"  attrGalerry="'+value.enuri+'" counttype="view">&nbsp;</span>';
+										content +='<span class="count icon_view'+value.siad+'">'+value.cCount+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-bubbles">&nbsp;</span>';
+										content +='<span class="count countComent'+value.siad+'">'+value.ascom+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-thumbs-up countGallery" attrGalerry="'+value.enuriLike+'" counttype="view">&nbsp;</span>';
+										content +='<span class="count countLike'+value.siad+'" >'+value.asli+'</span>';
+										content +='</a></div></div>';
+										
+								});
+								$('.galleryList').html(content);
+								$('.galleryList').attr('dataPage',comnData.totalpage);
+					}
+					});
+			
+			}
+			
+		});
+
+		
+		$(document).on('click','.countGallery', function()
+		{
+		
+			$(".popup-container").css({ top: ""+ (event.pageY )-100 +"px" });
+			var reqgal = $(this).attr('attrGalerry');
+			var cCaption = $(this).attr('counttype');
+			
+			var parent = $(this).next('.count');
+			$.ajax({
+				type: "POST",
+				url: basedomain+likepages,
+				data: {reqgal:reqgal},
+				dataType: "json",
+				success: function( strData ){
+							if(strData.status==1)
+							{
+								if(cCaption!='view')
+								{
+									
+								
+									parent.html(strData.cCount);
+									$('#popup-gallery').attr('style','display: none;');
+									$('#popup-gallery-text').attr('style','display: none;');
+									return false;
+								}
+								else
+								{
+									$('#bg-popup').attr('style','display: block;');
+									parent.html(strData.cCount);
+									
+									if(strData.asgmb)
+									{
+										$('#popup-gallery-text').attr('style','display: none;');
+										$('#popup-gallery').attr('style','display: block;');
+									}
+									else
+									{
+										$('#popup-gallery').attr('style','display: none;');
+										$('#popup-gallery-text').attr('style','display: block;');
+									}
+									$('.entry').html('');
+									if(strData.asgmb)
+									{
+										$('.popup-image').find('img').remove();
+										$('.popup-image').append('<img src="'+basedomain+'/public_assets/'+strData.asgmb+'" id="contnetImg"  />');
+										if(strData.asart)
+										{
+											$('.entry').append('<h3> By '+strData.na+'</h3><p>'+strData.asart+'</p>');
+										}
+										else
+										{
+											$('.entry').append('<h3> By '+strData.na.toUpperCase()+'</h3><p>'+strData.asuser+'</p>');
+										}
+									}
+									else
+									{
+										
+										$('.popup-image').find('img').remove();  
+										$('.entry').append('<p>'+strData.asuser+'</p><h3> By '+strData.na.toUpperCase()+'</h3>');										
+									}
+									
+									
+									$('.countView').html(strData.cCount);
+									$('.icon_view'+strData.siad).html($('.countView').html()); 
+									$('.countLike').html(strData.asli);
+									
+									//console.log(strData.statusLike);
+									if(strData.statusLike==1)
+									{
+										$('.likeButton').removeClass('likepop');
+										$('.likeButton').addClass('disable'); 
+										//console.log('aaa');
+									}
+									else
+									{
+										$('.likeButton').removeClass('disable');
+										$('.likeButton').addClass('likepop');
+										$('.likepop ').attr('attrGalerry',strData.enuriLike);
+										
+									
+									}
+									if(strData.df==$('#gallerypage').attr('attrid'))
+									{
+										$('.savemyartwork').attr('type','button');
+										$('.savemyartwork').addClass('saveartwork');
+										$('.savemyartwork').val("Save to My Artworks");
+									
+									}
+									else
+									{
+										$('.savemyartwork').attr('type','hidden');
+									
+									}
+									$('.commentarstorytext ').attr('attrGalerry',strData.enuriCom);
+									$('.commentarstory ').attr('attrGalerry',strData.enuriCom);
+									$('.countComent').html(strData.ascom);
+									$.ajax({
+											type: "POST",
+											url: basedomain+commenttoGalerry,
+											data: {reqgal:strData.enuriviewCom},
+											dataType: "json",
+											success: function( comnData ){
+											
+												if(comnData.status==1)
+													{												
+														var isicomentar='';
+														$.each(comnData.query, function( index, value ) {
+														
+																isicomentar += '<div class="row">';
+																isicomentar += ' <div class="author">';
+																isicomentar += '<div class="smallthumb">';
+																if(value.user_images)
+																{
+																	isicomentar += '<a href="#"><img src="'+value.user_images+'" /></a>';
+																}
+																else
+																{
+																		isicomentar += '<a href="#"><img src="https://www.goaheadpeople.com/asset_public/images/img_default.png" /></a>';
+																}
+																isicomentar += '</div>';
+																isicomentar += '</div>';
+																
+																isicomentar += '<div class="comment-meta">';
+																isicomentar += ' <a class="author-name" href="#">'+value.user_name+'</a>';
+																isicomentar += ' <span class="date">'+value.aspiration_comment_date2+'</span>';
+																isicomentar += '</div>';
+																isicomentar += '<div class="comment-entry">';
+																isicomentar += '<p> '+value.aspiration_comment+'</p>';
+																
+																isicomentar += '</div>';
+																isicomentar += ' </div>';
+																
+														
+														});
+														$('.loaders').remove();
+														$('.comment-result').html(isicomentar);
+														//btnComentar(cid);
+													}
+												else
+													{
+													
+														isicomentar = ' <div></div>';
+														$('.comment-result').html(isicomentar);
+														//btnComentar(cid);
+													}
+											}
+											
+											});
+									
+								}
+							}
+							else if (strData.status==2)
+							{
+								//alert(strData.msg);
+								window.location.href = basedomain;
+							
+							}
+							else
+							{
+								//alert(strData.msg);
+							
+							}
+						
+						}
+			});
+		
+		});
+	$(document).on('click','.likepop', function()
+		{
+			var reqgal = $(this).attr('attrGalerry');
+			$.ajax({
+				type: "POST",
+				url: basedomain+likepages,
+				data: {reqgal:reqgal},
+				dataType: "json",
+				success: function( strData ){
+					if(strData.status==1)
+							{
+								
+								$('.countLike').html(strData.cCount);
+									$('.countLike'+strData.reply).html(strData.cCount);
+									$('.likeButton').removeClass('likepop');
+								$('.likeButton').addClass('disable');
+								return false;
+							}
+					else if (strData.status==2)
+							{
+								//alert(strData.msg);
+								window.location.href = basedomain;
+							
+							}
+							else
+							{
+								//alert(strData.msg);
+							
+							}
+				}
+				});
+			
+			
+				
+		});
+	
+		$(document).on('click','.btnComentar', function()
+		{
+		
+			var isicomentar ="";	
+		
+			if($('.commentarstory').val()!='')
+			{
+				var comentar = $('.commentarstory').val();
+			
+			}
+			else if($('.commentarstorytext').val()!='')
+			{
+				var comentar = $('.commentarstorytext').val();
+				
+			}
+			
+			if(comentar.length >140)
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+			else
+				{
+					$('.errormessage').attr('style','display:none');
+					
+				}
+			var reqgal = $('.commentarstorytext').attr('attrGalerry');
+			console.log(reqgal);
+			$.ajax({
+						type: "POST",
+						url: basedomain+likepages,
+						data: {reqgal:reqgal,Coment:comentar},
+						dataType: "json",
+						success: function( comnData ){
+							if(comnData.status==1)
+							{
+								
+								$.each(comnData.query, function( index, value ) {
+											isicomentar += ' <div class="row">';
+																isicomentar += ' <div class="author">';
+																isicomentar += '<div class="smallthumb">';
+																if(value.user_images)
+																{
+																	isicomentar += '<a href="#"><img src="'+value.user_images+'" /></a>';
+																}
+																else
+																{
+																		isicomentar += '<a href="#"><img src="https://www.goaheadpeople.com/asset_public/images/img_default.png" /></a>';
+																
+																}
+																isicomentar += '</div>';
+																isicomentar += '</div>';
+																
+																isicomentar += '<div class="comment-meta">';
+																isicomentar += ' <a class="author-name" href="#">'+value.user_name+'</a>';
+																isicomentar += ' <span class="date">'+value.aspiration_comment_date2+'</span>';
+																isicomentar += '</div>';
+																isicomentar += '<div class="comment-entry">';
+																isicomentar += '<p> '+value.aspiration_comment+'</p>';
+																
+																isicomentar += '</div>';
+																isicomentar += ' </div>';
+														});
+								$('.loaders').remove();
+								$('.commentarstory').val('');
+								$('.commentarstorytext').val('');
+								$('.comment-result').html(isicomentar);
+								$('.countComent').html(comnData.cCount);
+								    $('.countComent'+comnData.diasco).html(comnData.cCount);
+								 
+							}
+							else if (comnData.status==2)
+							{
+								//alert(comnData.msg);
+								//window.location.href = basedomain;
+							
+							}
+							
+						}
+										
+				}); 
+									
+			
+		
+		});
+	
+	
+	$(document).bind('scroll','.galleryList', function()
+		{
+			//var batas =$('.galleryList').height();dataWidth
+			var batas =$('.galleryList').attr('dataWidth');
+			 var Tpage =$('.galleryList').attr('dataPage');
+			 var start =$('.galleryList').attr('dataStart') ;
+			 var totalPage=0;
+			  var srch = $('#src').val();
+			 if(srch.length > 3)
+			{
+				 var srch = $('#src').val();
+			}
+			else
+			{
+				var srch = '';
+			
+			}
+			var html='';
+			
+			if(Tpage>1 ) 
+			{
+				
+				if(start==Tpage)
+				{
+					return false;
+				}
+				
+				++start;
+				if($(this).scrollTop()>= batas){
+					batas = parseInt(batas);
+					$('.loader').attr('style',"display:block");
+					batasx = batas + 500;
+					$('.galleryList').removeAttr('dataWidth');
+					$('.galleryList').attr('dataWidth',batasx);
+					$('.galleryList').attr('dataStart',start) ;
+					
+					
+						$.ajax({
+						type: "POST",
+						url: basedomain+'?page=goahead&act=getAspiration',
+						data: {start:start,src:src},
+						dataType: "json",
+						success: function( comnData ){
+							$.each(comnData.aspiration, function( index, value ) {
+									if(value.hastu=='#goahead_lepaskan')
+										{
+											html += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											html += '<div class="galleryBox bos-rasakan"> ';
+										}
+									if(value.asgmb)
+										{
+											html += '<div class="galleryImage">';
+											html += '<img src="'+basedomain+'public_assets/'+value.asgmb+'" />';
+											html +='</div>';
+										}
+									else
+										{
+											html += '<div class="galleryImageBlank">';
+											html += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+											html +='</div>';
+										}
+										
+									html += '<a class="galleriContent  countGallery" href="#popup-gallery" attrGalerry="'+value.enuri +'" counttype="view" >'; 
+									html +='<p class="galleryText">'+value.asuser+'</p>';
+									html +='<p class="author">by '+value.na.toUpperCase()+'</p>';
+									html +='</a>';
+									html +='<div class="galleryStats">';
+									html +='<a class="statsbox" href="javascript:void(0)">';
+									
+									html += '<span class="icons icon-eye countGallery"  attrGalerry="'+value.enuri +'" counttype="view" >&nbsp;</span>';
+									html +='<span class="count icon_view'+value.siad+'">'+value.cCount+'</span>';
+									html +='</a>';
+									html +='<a class="statsbox" href="javascript:void(0)">';
+									html +='<span class="icons icon-bubbles">&nbsp;</span>';
+									html +='<span class="count countComent'+value.siad+'">'+value.ascom+'</span>';
+									html +='</a>';
+									
+									html +='<a class="statsbox" href="javascript:void(0)" id="countLike'+value.siad+'">';
+									html +='<span class="icons icon-thumbs-up likepop" attrGalerry="'+value.enuriLike+'" counttype="like">&nbsp;</span>';
+									html +='<span class="count countLike'+value.siad+'" id="countLike'+value.siad+'" >'+value.asli+'</span>'; 
+									html +='</a></div></div>';
+									
+							});
+							setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+							
+							setTimeout(function(){$('.galleryList').append(html);},3500);
+						
+						
+						}
+					});
+					setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+					
+				}
+			}
+		});
+		$(document).on('click','.saveartwork',function()
+		{
+			var cid = $('.commentarstory').attr('contentid');
+			
+			$.ajax({
+						type: "POST",
+						url: basedomain+mystory,
+						data: {cid:cid},
+						dataType: "json",
+						success: function( comnData ){
+						
+						if(comnData.status==1)
+							{
+								$('.savemyartwork').val('SAVED');
+								$('.savemyartwork').removeClass('saveartwork');
+								//console.log('aa');
+							}
+						}
+						
+				});
+		
+		});
+		 $('#gallerypage').bind('scroll', function()        {          
+		
+		 { }} );
+	</script>	
+{/literal}

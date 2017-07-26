@@ -1,0 +1,623 @@
+﻿
+
+<!-- terms content -->
+<section class="page_section" id="gallerypage" attrid='{$registerid}'>  
+    <div class="container">
+    	<div class="galleryList" dataWidth="684" dataStart="0" dataPage="{$totalpage}">
+		{if $aspiration}
+				{section loop=$aspiration name=i}
+				{if $aspiration[i].hastags =='#goahead_lepaskan' }
+					
+						<div class="galleryBox bos-lepaskan">
+					
+				{else}
+					
+						<div class="galleryBox bos-rasakan">
+					
+				{/if}
+					{if $aspiration[i].gambar_aspirasi_artist }
+						<div class="galleryImage">
+						
+							<img src="{$basedomain}public_assets/{$aspiration[i].gambar_aspirasi_artist}" />
+						
+						</div><!-- end .galleryImage -->    
+					{else}
+					<div class="galleryImageBlank">
+						<img src="{$assets_domain}content/gallery_blank.png" />
+					</div><!-- end .galleryImage --> 
+					{/if}
+					<a class="galleriContent  countGallery" href="#popup-gallery" counttype="views" count="{$aspiration[i].aspirasi_view}" contentid="{$aspiration[i].aspirasi_id}" datacaption="view">
+						<p class="galleryText">
+												{$aspiration[i].aspirasi_user|escape:'html'}
+						</p>
+						<p class="author">by {$aspiration[i].username|upper}</p>
+					</a>
+					<div class="galleryStats">
+						<a class="statsbox" href="#icon_view">
+							<span class="icons icon-eye countGallery"  counttype="views" count="{$aspiration[i].aspirasi_view}" contentid="{$aspiration[i].aspirasi_id}" datacaption="view" >&nbsp;</span>
+							<span class="count icon_view{$aspiration[i].aspirasi_id}">{$aspiration[i].aspirasi_view}</span>
+						</a><!-- end .statsbox -->
+						<a class="statsbox" href="javascript:void(0)">
+							<span class="icons icon-bubbles" >&nbsp;</span>
+							<span class="count countComent{$aspiration[i].aspirasi_id}">{$aspiration[i].aspirasi_comment}</span>
+						</a><!-- end .statsbox -->
+						<a class="statsbox" href="javascript:void(0)" id="countLike{$aspiration[i].aspirasi_id}">
+							<span class="icons icon-thumbs-up countGallery" contentid="{$aspiration[i].aspirasi_id}" count="{$aspiration[i].aspirasi_like}" datacaption="like">&nbsp;</span>
+							<span class="count countLike{$aspiration[i].aspirasi_id}" >{$aspiration[i].aspirasi_like}</span>
+						</a><!-- end .statsbox -->    
+					</div><!-- end .galleryStats -->    
+				</div><!-- end .galleryBox -->   
+			{/section}
+        		
+            
+		{/if}
+        </div><!-- end .galleryList -->   
+		{include file="application/web/widgets/popup-gallery.html"}
+		{include file="application/web/widgets/popup-gallery-text.html"}
+			<div class="loader" style="display:none">
+            	<img src="{$assets_domain}images/loaderbar.gif" />
+            </div>		
+			<div id="bg-popup" style="display: none;"></div>
+    </div><!-- end .container -->    
+</section>
+
+
+	<script>
+	 var likepages= "{$likepages}";
+	  var commenttoGalerry= "{$commenttoGalerry}";
+	  var mystory = "{$storyPage}";
+{literal}	 
+		$(document).ready(function(){
+			$("#autopopupdetail").trigger("click");
+			src ='';
+			src +=' <li> ';
+			src +='  ';
+			src +='  <input type="text" value="" id="src" placeholder="Search By User..." />';
+			
+			src +='  ';
+			src +='  </li>';
+			$('#navigation').append(src);
+			
+			});
+		
+
+		$(document).on('keyup','#src', function()
+		{
+			var content ='';
+			var srch = $(this).val();
+			var templenght=0;
+			if(srch.length > 3)
+			{
+				var templatelama = $('.galleryList').html();
+				$('.loader').attr('style','display:block');
+				$.ajax({
+					type: "POST",
+					url: basedomain+'?page=goahead&act=getAspiration',
+					data: {srch:srch},
+					dataType: "json",
+					success: function( comnData ){
+						$.each(comnData.aspiration, function( index, value ) {
+										if(value.hastags=='#goahead_lepaskan')
+										{
+											content += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											content += '<div class="galleryBox bos-rasakan"> ';
+										}
+										
+										if(value.gambar_aspirasi_artist)
+											{
+												content += '<div class="galleryImage">';
+												content += '<img src="'+basedomain+'public_assets/'+value.gambar_aspirasi_artist+'" />';
+												content +='</div>';
+											}
+										else
+											{
+												content += '<div class="galleryImageBlank">';
+												content += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+												content +='</div>';
+											}
+										content += '<a class="galleriContent  countGallery" href="#popup-gallery" counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view">';
+										content +='<p class="galleryText">'+value.aspirasi_user+'</p>';
+										content +='<p class="author">by '+value.username.toUpperCase()+'</p>';
+										content +='</a>';
+										content +='<div class="galleryStats">';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content += '<span class="icons icon-eye countGallery"  counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view" >&nbsp;</span>';
+										content +='<span class="count icon_view'+value.aspirasi_id+'">'+value.aspirasi_view+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-bubbles">&nbsp;</span>';
+										content +='<span class="count countComent'+value.aspirasi_id+'">'+value.aspirasi_comment+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="javascript:void(0)">';
+										content +='<span class="icons icon-thumbs-up countGallery" contentid="'+value.aspirasi_id+'" count="'+value.aspirasi_like+'" datacaption="like">&nbsp;</span>';
+										content +='<span class="count countLike'+value.aspirasi_id+'" >'+value.aspirasi_like+'</span>';
+										content +='</a></div></div>';
+										
+								});
+								$('.galleryList').html(content);
+								$('.galleryList').attr('dataPage',comnData.totalpage);
+								templenght = srch.length;
+								setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+								
+					}
+					});
+					
+			}
+			else if(srch.length==0)
+			{
+				var content ='';
+				$.ajax({
+					type: "POST",
+					url: basedomain+'?page=goahead&act=getAspiration',
+					data: {srch:''},
+					dataType: "json",
+					success: function( comnData ){
+						$.each(comnData.aspiration, function( index, value ) {
+										if(value.hastags=='#goahead_lepaskan')
+										{
+											content += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											content += '<div class="galleryBox bos-rasakan"> ';
+										}
+										if(value.gambar_aspirasi_artist)
+											{
+												content += '<div class="galleryImage">';
+												content += '<img src="'+basedomain+'public_assets/'+value.gambar_aspirasi_artist+'" />';
+												content +='</div>';
+											}
+										else
+											{
+												content += '<div class="galleryImageBlank">';
+												content += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+												content +='</div>';
+											}
+										content += '<a class="galleriContent  countGallery" href="#popup-gallery" counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view">';
+										content +='<p class="galleryText">'+value.aspirasi_user+'</p>';
+										content +='<p class="author">by '+value.username.toUpperCase()+'</p>';
+										content +='</a>';
+										content +='<div class="galleryStats">';
+										content +='<a class="statsbox" href="#">';
+										content += '<span class="icons icon-eye countGallery"  counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view" >&nbsp;</span>';
+										content +='<span class="count icon_view'+value.aspirasi_id+'">'+value.aspirasi_view+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="#">';
+										content +='<span class="icons icon-bubbles">&nbsp;</span>';
+										content +='<span class="count countComent'+value.aspirasi_id+'">'+value.aspirasi_comment+'</span>';
+										content +='</a>';
+										content +='<a class="statsbox" href="#">';
+										content +='<span class="icons icon-thumbs-up countGallery" contentid="'+value.aspirasi_id+'" count="'+value.aspirasi_like+'" datacaption="like">&nbsp;</span>';
+										content +='<span class="count countLike'+value.aspirasi_id+'" >'+value.aspirasi_like+'</span>';
+										content +='</a></div></div>';
+										
+								});
+								$('.galleryList').html(content);
+								$('.galleryList').attr('dataPage',comnData.totalpage);
+					}
+					});
+			
+			}
+			
+		});
+
+		
+		$(document).on('click','.countGallery', function()
+		{
+		
+			$("html, body").animate({ scrollTop: 0 }, 600);
+			var cid = $(this).attr('contentid');
+			var cCount = $(this).attr('count');
+			var thisx=$(this);
+			var cCaption = $(this).attr('datacaption');
+			var comentar = $(this).attr('comentar');
+			var parent = $(this).next('.count');
+			$.ajax({
+				type: "POST",
+				url: basedomain+likepages,
+				data: {cid:cid,cCount:cCount,caption:cCaption},
+				dataType: "json",
+				success: function( strData ){
+							if(strData.status==1)
+							{
+								if(cCaption!='view')
+								{
+									
+									parent.attr('count',strData.cCount);
+									parent.html(strData.cCount);
+									$('#popup-gallery').attr('style','display: none;');
+									$('#popup-gallery-text').attr('style','display: none;');
+									return false;
+								}
+								else
+								{
+									thisx.attr('count',strData.cCount);
+									$('#bg-popup').attr('style','display: block;');
+									parent.html(strData.cCount);
+									
+									if(strData.gambar_aspirasi_artist)
+									{
+										$('#popup-gallery-text').attr('style','display: none;');
+										$('#popup-gallery').attr('style','display: block;');
+									}
+									else
+									{
+										$('#popup-gallery').attr('style','display: none;');
+										$('#popup-gallery-text').attr('style','display: block;');
+									}
+									$('.entry').html('');
+									if(strData.gambar_aspirasi_artist)
+									{
+										$('.popup-image').find('img').remove();
+										$('.popup-image').append('<img src="'+basedomain+'/public_assets/'+strData.gambar_aspirasi_artist+'" id="contnetImg" gmbrc='+strData.gambar_aspirasi_artist+' />');
+										if(strData.aspirasi_artist)
+										{
+											$('.entry').append('<h3> By '+strData.username+'</h3><p>'+strData.aspirasi_artist+'</p>');
+										}
+										else
+										{
+											$('.entry').append('<h3> By '+strData.username.toUpperCase()+'</h3><p>'+strData.aspirasi_user+'</p>');
+										}
+									}
+									else
+									{
+										
+										$('.popup-image').find('img').remove();  
+										$('.entry').append('<p>'+strData.aspirasi_user+'</p><h3> By '+strData.username.toUpperCase()+'</h3>');										
+									}
+									
+									
+									$('.countView').html(strData.aspirasi_view++);
+									$('.icon_view'+cid).html($('.countView').html()); 
+									$('.countLike').html(strData.aspirasi_like);
+									
+									console.log(strData.statusLike);
+									if(strData.statusLike==1)
+									{
+										$('.likeButton').removeClass('likepop');
+										$('.likeButton').addClass('disable'); 
+										console.log('aaa');
+									}
+									else
+									{
+										$('.likeButton').removeClass('disable');
+										$('.likeButton').addClass('likepop');
+										$('.likepop ').attr('contentid',cid);
+										$('.likepop ').attr('count',strData.aspirasi_like);
+										$('.likepop ').attr('datacaption','like');
+									
+									}
+									if(strData.user_id==$('#gallerypage').attr('attrid'))
+									{
+										$('.savemyartwork').attr('type','button');
+										$('.savemyartwork').addClass('saveartwork');
+										$('.savemyartwork').val("Save to My Artworks");
+									
+									}
+									else
+									{
+										$('.savemyartwork').attr('type','hidden');
+									
+									}
+									$('.commentarstorytext ').attr('contentid',cid);
+									$('.commentarstory ').attr('contentid',cid);
+									$('.countComent').html(strData.aspirasi_comment);
+									$.ajax({
+											type: "POST",
+											url: basedomain+commenttoGalerry,
+											data: {cid:cid},
+											dataType: "json",
+											success: function( comnData ){
+											
+												if(comnData.status==1)
+													{												
+														var isicomentar='';
+														$.each(comnData.query, function( index, value ) {
+														
+																isicomentar += '<div class="row">';
+																isicomentar += ' <div class="author">';
+																isicomentar += '<div class="smallthumb">';
+																if(value.user_images)
+																{
+																	isicomentar += '<a href="#"><img src="'+value.user_images+'" /></a>';
+																}
+																else
+																{
+																		isicomentar += '<a href="#"><img src="https://www.goaheadpeople.com/asset_public/images/img_default.png" /></a>';
+																}
+																isicomentar += '</div>';
+																isicomentar += '</div>';
+																
+																isicomentar += '<div class="comment-meta">';
+																isicomentar += ' <a class="author-name" href="#">'+value.user_name+'</a>';
+																isicomentar += ' <span class="date">'+value.aspiration_comment_date2+'</span>';
+																isicomentar += '</div>';
+																isicomentar += '<div class="comment-entry">';
+																isicomentar += '<p> '+value.aspiration_comment+'</p>';
+																
+																isicomentar += '</div>';
+																isicomentar += ' </div>';
+																
+														
+														});
+														$('.loaders').remove();
+														$('.comment-result').html(isicomentar);
+														//btnComentar(cid);
+													}
+												else
+													{
+													
+														isicomentar = ' <div></div>';
+														$('.comment-result').html(isicomentar);
+														//btnComentar(cid);
+													}
+											}
+											
+											});
+									
+								}
+							}
+							else if (strData.status==2)
+							{
+								//alert(strData.msg);
+								window.location.href = basedomain;
+							
+							}
+							else
+							{
+								//alert(strData.msg);
+							
+							}
+						
+						}
+			});
+		
+		});
+	$(document).on('click','.likepop', function()
+		{
+			var cid = $(this).attr('contentid');
+			var cCount = $(this).attr('count');
+			var cCaption = $(this).attr('datacaption');
+			
+			$.ajax({
+				type: "POST",
+				url: basedomain+likepages,
+				data: {cid:cid,cCount:cCount,caption:cCaption},
+				dataType: "json",
+				success: function( strData ){
+					if(strData.status==1)
+							{
+								
+								$('.countLike').html(strData.cCount);
+									$('.countLike'+cid).html(strData.cCount);
+									$('.likeButton').removeClass('likepop');
+								$('.likeButton').addClass('disable');
+								return false;
+							}
+					else if (strData.status==2)
+							{
+								//alert(strData.msg);
+								window.location.href = basedomain;
+							
+							}
+							else
+							{
+								//alert(strData.msg);
+							
+							}
+				}
+				});
+			
+			
+				
+		});
+	
+		$(document).on('click','.btnComentar', function()
+		{
+		
+			var isicomentar ="";	
+		
+			if($('.commentarstory').val()!='')
+			{
+				var comentar = $('.commentarstory').val();
+					var cid = $('.commentarstory').attr('contentid');
+			}
+			else if($('.commentarstorytext').val()!='')
+			{
+				var comentar = $('.commentarstorytext').val();
+					var cid = $('.commentarstorytext').attr('contentid');
+			}
+			
+			if(comentar.length >140)
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+			else
+				{
+					$('.errormessage').attr('style','display:none');
+					
+				}
+			$.ajax({
+						type: "POST",
+						url: basedomain+likepages,
+						data: {cid:cid,Coment:comentar,caption:'comment'},
+						dataType: "json",
+						success: function( comnData ){
+							if(comnData.status==1)
+							{
+								
+								$.each(comnData.query, function( index, value ) {
+											isicomentar += ' <div class="row">';
+																isicomentar += ' <div class="author">';
+																isicomentar += '<div class="smallthumb">';
+																if(value.user_images)
+																{
+																	isicomentar += '<a href="#"><img src="'+value.user_images+'" /></a>';
+																}
+																else
+																{
+																		isicomentar += '<a href="#"><img src="https://www.goaheadpeople.com/asset_public/images/img_default.png" /></a>';
+																
+																}
+																isicomentar += '</div>';
+																isicomentar += '</div>';
+																
+																isicomentar += '<div class="comment-meta">';
+																isicomentar += ' <a class="author-name" href="#">'+value.user_name+'</a>';
+																isicomentar += ' <span class="date">'+value.aspiration_comment_date2+'</span>';
+																isicomentar += '</div>';
+																isicomentar += '<div class="comment-entry">';
+																isicomentar += '<p> '+value.aspiration_comment+'</p>';
+																
+																isicomentar += '</div>';
+																isicomentar += ' </div>';
+														});
+								$('.loaders').remove();
+								$('.commentarstory').val('');
+								$('.commentarstorytext').val('');
+								$('.comment-result').html(isicomentar);
+								var countComent = parseInt($('.countComent').html());
+								  $('.countComent').html(countComent+1);
+								    $('.countComent'+cid).html(countComent+1);
+								 
+							}
+							else if (comnData.status==2)
+							{
+								//alert(comnData.msg);
+								//window.location.href = basedomain;
+							
+							}
+							
+						}
+										
+				}); 
+									
+			
+		
+		});
+	
+	
+	$(document).bind('scroll','.galleryList', function()
+		{
+			//var batas =$('.galleryList').height();dataWidth
+			
+			 var batas =$('.galleryList').attr('dataWidth');
+			 var Tpage =$('.galleryList').attr('dataPage');
+			 var start =$('.galleryList').attr('dataStart') ;
+			 var totalPage=0;
+			  var srch = $('#src').val();
+			 if(srch.length > 3)
+			{
+				 var srch = $('#src').val();
+			}
+			else
+			{
+				var srch = '';
+			
+			}
+			var html='';
+			
+			if(Tpage>1 ) 
+			{
+				
+				if(start==Tpage)
+				{
+					return false;
+				}
+				
+				++start;
+				if($(this).scrollTop()>= batas){
+					batas = parseInt(batas);
+					$('.loader').attr('style',"display:block");
+					batasx = batas + 684;
+					$('.galleryList').removeAttr('dataWidth');
+					$('.galleryList').attr('dataWidth',batasx);
+					$('.galleryList').attr('dataStart',start) ;
+					
+					
+						$.ajax({
+						type: "POST",
+						url: basedomain+'?page=goahead&act=getAspiration',
+						data: {start:start,src:src},
+						dataType: "json",
+						success: function( comnData ){
+							$.each(comnData.aspiration, function( index, value ) {
+									if(value.hastags=='#goahead_lepaskan')
+										{
+											html += '<div class="galleryBox bos-lepaskan"> ';
+										}
+										else
+										{
+											html += '<div class="galleryBox bos-rasakan"> ';
+										}
+									if(value.gambar_aspirasi_artist)
+										{
+											html += '<div class="galleryImage">';
+											html += '<img src="'+basedomain+'public_assets/'+value.gambar_aspirasi_artist+'" />';
+											html +='</div>';
+										}
+									else
+										{
+											html += '<div class="galleryImageBlank">';
+											html += '<img src="'+basedomain+'assets/content/gallery_blank.png" />';
+											html +='</div>';
+										}
+									html += '<a class="galleriContent  countGallery" href="#popup-gallery" counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view">';
+									html +='<p class="galleryText">'+value.aspirasi_user+'</p>';
+									html +='<p class="author">by '+value.username.toUpperCase()+'</p>';
+									html +='</a>';
+									html +='<div class="galleryStats">';
+									html +='<a class="statsbox" href="javascript:void(0)">';
+									html += '<span class="icons icon-eye countGallery"  counttype="views" count="'+value.aspirasi_view+'" contentid="'+value.aspirasi_id+'" datacaption="view" >&nbsp;</span>';
+									html +='<span class="count icon_view'+value.aspirasi_id+'">'+value.aspirasi_view+'</span>';
+									html +='</a>';
+									html +='<a class="statsbox" href="javascript:void(0)">';
+									html +='<span class="icons icon-bubbles">&nbsp;</span>';
+									html +='<span class="count countComent'+value.aspirasi_id+'">'+value.aspirasi_comment+'</span>';
+									html +='</a>';
+									html +='<a class="statsbox" href="javascript:void(0)" id="countLike'+value.aspirasi_id+'">';
+									html +='<span class="icons icon-thumbs-up countGallery" contentid="'+value.aspirasi_id+'" count="'+value.aspirasi_like+'" datacaption="like">&nbsp;</span>';
+									html +='<span class="count countLike'+value.aspirasi_id+'" id="countLike'+value.aspirasi_id+'" >'+value.aspirasi_like+'</span>'; 
+									html +='</a></div></div>';
+									
+							});
+							setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+							
+							setTimeout(function(){$('.galleryList').append(html);},3500);
+						
+						
+						}
+					});
+					setTimeout(function(){$('.loader').attr('style','display:none')},3000);
+					
+				}
+			}
+		});
+		$(document).on('click','.saveartwork',function()
+		{
+			var cid = $('.commentarstory').attr('contentid');
+			
+			$.ajax({
+						type: "POST",
+						url: basedomain+mystory,
+						data: {cid:cid},
+						dataType: "json",
+						success: function( comnData ){
+						
+						if(comnData.status==1)
+							{
+								$('.savemyartwork').val('SAVED');
+								$('.savemyartwork').removeClass('saveartwork');
+								console.log('aa');
+							}
+						}
+						
+				});
+		
+		});
+	</script>	
+{/literal}

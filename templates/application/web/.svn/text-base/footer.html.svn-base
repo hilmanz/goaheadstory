@@ -1,0 +1,23 @@
+﻿
+          
+<!--footer-->
+<div id="footer">
+    <div class="footer">
+        <div class="universal">
+            <p>Informasi dalam website ini ditujukan untuk perokok berusia 18 tahun atau lebih dan tinggal di wilayah Indonesia. Jika kamu tidak ingin dihubungi oleh PT HM Sampoerna Tbk. melalui email, kamu bisa hapus kontak kamu dengan mengklik link hapus saya dibawah ini.</p>
+        </div><!-- END .universal -->
+        <div class="boxfooter">
+            <div class="universal">
+                <a href="https://login.goaheadpeople.com/Templates/Termsandconditions.aspx" target="_blank">Syarat dan Ketentuan</a>|
+                <a href="https://login.goaheadpeople.com/Templates/FAQ.aspx" target="_blank">Daftar Pertanyaan</a>|
+                <a href="https://login.goaheadpeople.com/Templates/Contactus.aspx" target="_blank">Hubungi Kami</a>|
+                <a href="http://www.sampoerna.com/id_id/tobacco_regulation/smoking_and_health/pages/smoking_and_health.aspx" target="_blank">Perihal Merokok</a>|
+                <a href="https://login.goaheadpeople.com/Templates/RemoveMe.aspx?id=7DB039ED-12D1-4065-B11E-065A6851C9F4CA02-FE41-47D2" target="_blank">Hapus Saya</a>
+            </div><!-- END .universal -->
+        </div><!-- END .boxfooter -->
+    </div><!-- END #footer -->
+	{if $page==''}
+    <a class="backtop" id="backtop" href="#">Top</a>
+    {/if}
+</div>
+<!--//footer-->

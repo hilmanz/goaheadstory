@@ -1,0 +1,14 @@
+﻿<!-- thanks content -->
+<section class="page_section" id="videoPage">
+    <div class="video">
+      <a class="closePopup" href="#" onClick="history.go(-1)">&nbsp;</a>
+      <video id="video1" class="video-js vjs-default-skin" controls preload="none" width="100%" height="480"
+          poster="{$basedomain}assets/content/video_lepaskan.jpg"
+          data-setup="">
+        <source src="{$basedomain}assets/video/A_MILD_LET_GO_90s_V1_without_Website.mp4" type='video/mp4' />
+        <source src="{$basedomain}assets/video/A_MILD_LET_GO_90s_V1_without_Website.webm" type='video/webm' />
+        <source src="{$basedomain}assets/video/A_MILD_LET_GO_90s_V1_without_Website.ogv" type='video/ogg' />
+      </video>                          
+    </div><!-- end .video --> 
+</section>
+<div id="bg-popup2"></div> 

@@ -1,0 +1,34 @@
+ {if $user}
+	<div class="widget">
+    <div class="nav">
+		<ul id="menu" class="menu">			 
+			<!--<li>
+				<a href="{$basedomain}listusertravia">
+					<span>Users Travia</span>
+				</a>
+                  				
+			</li>-->
+			<li>
+				<a href="{$basedomain}aspirationtravia">
+					<span>Aspiration</span>
+				</a>
+               			
+			</li>			
+						
+		</ul>
+    </div> <!-- /#nav -->
+    <div id="info-user">
+	{if $user}
+               <div class="nav">
+					<div style="font-weight: bold; font-size: 25px; position: absolute; top: -40px; left: 10px;" ><a href="#" >Hi, {$user->last_name} </a></div>
+					<ul  class="menu">			 
+						{if $user->email=='asdqwe@asdqwe.com'}
+						<li><a   href="{$basedomain}administrator">Administrator</a></li>
+						{/if}
+						<li><a   href="{$basedomain}logout.php">Log Out</a></li>
+					</ul>
+				</div> <!-- /#nva -->
+		{/if}
+    </div> <!-- /#info-user -->
+</div><!-- /.widget -->
+{/if}

@@ -1,0 +1,76 @@
+<div id="theContainer" class="inboxPage">
+    <div class="theContainer">
+        <div class="head-title">
+            <h1 class="fl">Input auction</h1>
+        </div> <!-- /.head-title -->
+        <div class="formContent">
+            <form method="POST" action="" enctype="multipart/form-data">
+			<table border=1>
+				<tr>
+					<td>Title</td>
+					<td>:</td>
+					<td><input type="text" name="title" id="title" value="" /></td>
+				</tr> 
+				<tr>
+					<td>Content</td>
+					<td>:</td>
+					<td><textarea name="content" id="content" ></textarea></td>
+				</tr>
+				<tr>
+					<td>start date</td>
+					<td>:</td>
+                    <td>
+					<input type="text" class="half-width" id="datepicker" name="startdate" value="{$startdate}" style="width:100px" />				
+					</td>
+				</tr>
+                <tr>
+                	<td>end date</td>
+					<td>:</td>
+                    <td><input type="text" class="half-width" id="datepicker2" name="enddate" value="{$enddate}" style="width:100px" /></td>
+                </tr>
+				<tr>
+					<td>image</td>
+					<td>:</td>
+					<td><input type="file" name="images" value="" /></td>
+				</tr>
+				{*}
+				<tr>
+					<td>Prize Type</td>
+					<td>:</td>
+					<td>
+						<select name="prizetype">
+							<option value="" selected >-</option>
+							<option value="0">Unknown</option>
+							<option value="1">Prize</option>
+						</select>
+					</td>
+				</tr> 
+				<tr>
+					<td>Points</td>
+					<td>:</td>
+					<td><input type="text" name="points" id="point" onkeypress="return numbersonly(event);" /></td>
+				</tr>
+				{/*}
+				<tr>
+					<td>Min.Bid</td>
+					<td>:</td>
+					<td><input type="text" name="minbid" id="minbid" onkeypress="return numbersonly(event);" /></td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td>:</td>
+					<td>
+						<select name="n_status">
+							<option value="0">UnPublished</option>
+							<option value="1" selected>Published</option>
+						</select>
+					</td>
+				</tr> 
+				<tr>
+					<td colspan="3" ><input type="submit" name="submit" value="submit" /></td>
+				</tr>
+			</table>
+            </form>
+		</div>
+	</div>
+</div>

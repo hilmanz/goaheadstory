@@ -1,0 +1,102 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<HTML>
+	<HEAD>
+		<title>A MILD
+</title>
+<link href="css/landingPage.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/flexsliderLanding.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/icon.css" type="text/css"  media="all" />
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/jquery.flexsliderLanding-min.js"></script>
+
+
+
+	</HEAD>
+	<body class="wrapper">
+	
+			<div class="mainPage">
+				<div class="headerLanding">
+                	<div class="logo"><img src="images/logo.png" /></div>
+                    <div class="topRight">
+                    	<p>Jelajahi kemungkinan tanpa batas dengan saling belajar, berbagi dan berinteraksi di ARTCADEMY.<br />
+Bangun jaringanmu di sini dan tunjukkan ekpresi artistikmu setiap hari. <span class="red">Showcase your art and get noticed !</span></p>
+                    </div>     
+                </div> <!-- close header -->
+				<div class="content">
+                	<section class="slider">
+                        <div class="flexslider">
+                          <ul class="slides">
+                            <li><a href="#" target="_blank">
+                                <img src="content/slide/slide.jpg" alt=""></a>
+                                <div class="slide_tittle">
+                                	<p class="icon_music">
+            						<span class="titleSlide">Music luctus</span>
+                					<span>gravida nulla, sit amet, consectetur adipiscing elit.</span>
+             						</p>
+                                </div>
+                                </li>
+                                <li><a href="#" target="_blank">
+                                <img src="content/slide/slide1.jpg" alt=""></a>
+                                <div class="slide_tittle">
+                                	<p class="icon_music">
+            						<span class="titleSlide">Music luctus</span>
+                					<span>gravida nulla, sit amet, consectetur adipiscing elit.</span>
+             						</p>
+                                </div>
+                                </li>
+                                <li><a href="#" target="_blank">
+                                <img src="content/slide/slide2.jpg" alt=""></a>
+                                <div class="slide_tittle">
+                                	<p class="icon_music">
+            						<span class="titleSlide">Music luctus</span>
+                					<span>gravida nulla, sit amet, consectetur adipiscing elit.</span>
+             						</p>
+                                </div>
+                                </li>
+                                <li><a href="#" target="_blank">
+                                <img src="content/slide/slide3.jpg" alt=""></a>
+                                <div class="slide_tittle">
+                                	<p class="icon_music">
+            						<span class="titleSlide">Music luctus</span>
+                					<span>gravida nulla, sit amet, consectetur adipiscing elit.</span>
+             						</p>
+                                </div>
+                                </li>
+                          </ul>
+                        </div>
+                      </section>
+                   <div class="smSubmit"><a id="linkReg" href="#">Register/Login</a></div>
+                </div><!-- END. content-->
+				<DIV class=footer>
+<DIV class="text style1">Informasi dalam website ini di tujukan untuk perokok berusia 18 tahun atau lebih dan tinggal di wilayah Indonesia</DIV>
+<DIV class="text style2">Jika Anda sudah terdaftar dan diverifikasi untuk situs merek lain dibawah PT H.M. Sampoerna dan Philip Morris Indonesia.<br />
+Anda dapat menggunakan detail login Anda untuk mengakses situs ini.<br />
+Untuk pertanyaan dan menghubungi kami, Anda dapat mengirimkan email ke <a href="mailto:register@amild.com">register@amild.com</a></DIV>
+
+<DIV class=navigation>
+<UL>
+<LI ><A href="/Templates/LandingPage.aspx">Halaman Utama</A> 
+<LI ><A href="/Templates/Termsandconditions.aspx" target=_Blank>Syarat dan ketentuan</A> 
+<LI ><A href="/Templates/RemoveMe.aspx">Hapus Saya</A>
+<LI style="display:none"><A href="/demoPages/PMISite.htm" target=_Blank>PMI Corporate</A>
+<LI ><A href="/Templates/FAQ.aspx" target=_Blank>Daftar Pertanyaan</A> 
+<LI ><A href="/Templates/Contactus.aspx" target=_Blank>Kontak Kami</A> 
+<LI class=last id=health ><A href="http://www.pmi.com/id/smokingandhealth" target=_Blank>Perihal Merokok</A></LI></UL></DIV></DIV>
+
+			</div>
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
+	</body>
+</HTML>

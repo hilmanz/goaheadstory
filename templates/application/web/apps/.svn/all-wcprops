@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/go-ahead-story/!svn/ver/101/trunk/goaheadstory/templates/application/web/apps
+END
+gallery.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/go-ahead-story/!svn/ver/99/trunk/goaheadstory/templates/application/web/apps/gallery.html
+END
+submit-story.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/go-ahead-story/!svn/ver/43/trunk/goaheadstory/templates/application/web/apps/submit-story.html
+END
+winner.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/go-ahead-story/!svn/ver/91/trunk/goaheadstory/templates/application/web/apps/winner.html
+END
+video-lepaskan.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/go-ahead-story/!svn/ver/23/trunk/goaheadstory/templates/application/web/apps/video-lepaskan.html
+END
+video-rasakan.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/go-ahead-story/!svn/ver/45/trunk/goaheadstory/templates/application/web/apps/video-rasakan.html
+END
+artist.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/go-ahead-story/!svn/ver/103/trunk/goaheadstory/templates/application/web/apps/artist.html
+END
+home.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/go-ahead-story/!svn/ver/98/trunk/goaheadstory/templates/application/web/apps/home.html
+END
+thanks.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/go-ahead-story/!svn/ver/101/trunk/goaheadstory/templates/application/web/apps/thanks.html
+END
+terms.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/go-ahead-story/!svn/ver/83/trunk/goaheadstory/templates/application/web/apps/terms.html
+END
+trivia-result.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/go-ahead-story/!svn/ver/100/trunk/goaheadstory/templates/application/web/apps/trivia-result.html
+END

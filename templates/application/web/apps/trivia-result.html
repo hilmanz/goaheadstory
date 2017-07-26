@@ -1,0 +1,75 @@
+﻿
+
+<!-- terms content -->
+{literal}
+<style>
+	#trivia-result{
+	{/literal}
+	
+		background: url({$basedomain}/public_assets/{$baground}) no-repeat top center fixed; 
+	{literal}
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	{/literal}
+	{literal}
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{$basedomain}/public_assets/{$baground}', sizingMethod='scale');
+		-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{$basedomain}/public_assets/{$baground}', sizingMethod='scale')";
+	}
+</style>
+{/literal}
+<section class="page_section" id="trivia-result">  
+    <div class="container">  
+    	<p>Lo adalah seorang:</p>
+		 <h2>{$traviaTitel}</h2>
+		  <p>{$travianotags}</br>{$hastags}</p>
+        <div class="act-btn">
+				<input type="hidden" name="travia" value="{$traviaid}" id="travia">
+				
+				<input type="hidden" name="image" value="/home/milad/goaheadstory/public_html/public_assets/{$images}" id="image">
+				
+		{if $status !='2' }
+            <p><a class="button btnArt" href="#">SAVE TO MY ARTWORKS</a></p>
+		{/if}
+            <p><a class="button btnWrite" href="#">GO AHEAD, WRITE YOUR OWN STORY</a></p>
+		
+		
+        </div><!-- end .act-btn --> 
+    </div><!-- end .container -->    
+</section>
+
+<script>
+ var traviapages= "{$traviaPage}";
+
+{literal}	 
+	$(document).ready(function(){
+	
+	$(document).on('click','.btnWrite',function()
+		{
+				window.location.href = basedomain+'?page=goahead#submitstory';
+				
+		});
+	$(document).on('click','.btnArt',function()
+		{
+			var travia = $('#travia').val();
+			console.log(traviapages);
+			$.ajax({
+						type: "POST",
+						url: basedomain+traviapages,
+						data: {travia:travia},
+						dataType: "json",
+						success: function( comnData ){
+							$('.btnArt').addClass('disable');
+							$('.disable').removeClass('btnArt');
+							$('.disable').html('');
+							$('.disable').html('SAVED');
+							
+						}
+						
+				});
+		
+		});
+	});
+</script>
+{/literal}

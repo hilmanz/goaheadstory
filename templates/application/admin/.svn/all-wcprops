@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/go-ahead-story/!svn/ver/64/trunk/goaheadstory/templates/application/admin
+END
+landing.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/landing.html
+END
+login_message.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/login_message.html
+END
+footer.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/footer.html
+END
+message.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/message.html
+END
+register.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/register.html
+END
+meta.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/go-ahead-story/!svn/ver/8/trunk/goaheadstory/templates/application/admin/meta.html
+END
+header.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/go-ahead-story/!svn/ver/12/trunk/goaheadstory/templates/application/admin/header.html
+END
+home.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/go-ahead-story/!svn/ver/8/trunk/goaheadstory/templates/application/admin/home.html
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/go-ahead-story/!svn/ver/8/trunk/goaheadstory/templates/application/admin/login.html
+END
+master.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/go-ahead-story/!svn/ver/5/trunk/goaheadstory/templates/application/admin/master.html
+END

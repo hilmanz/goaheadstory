@@ -1,0 +1,43 @@
+<div id="theContainer" class="inboxPage">
+    <div class="theContainer">
+        <div class="head-title">
+            <h1 class="fl">View Personality Quiz</h1>
+        </div> <!-- /.head-title -->
+        <div class="formContent">
+           <table border=1>
+				<tr>
+					<td>Username</td>
+					<td>:</td>
+					<td><input type="hidden" name="aspirationusername" id="aspirationusername" value="{$aspiration.username}" />{$aspiration.user_name}</td>
+				</tr> 
+				<tr>
+					<td>Artwork</td>
+					<td>:</td>
+					<td>
+						<img width="300" height="300" src="{$basedomainpath}public_assets/{$aspiration.travia_images}">
+					</td>
+				</tr> 
+				<tr>
+					<td>Title</td>
+					<td>:</td>
+					<td><input type="hidden" name="aspiration" id="aspiration" value="{$aspiration.aspirasi_user}" />{$aspiration.title}</td>
+				</tr>
+				
+				<tr>
+					<td>Deskripsi</td>
+					<td>:</td>
+					<td>{$aspiration.Deskripsi}
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td colspan="3" >
+						<input type="button" class="btn" value="Back" onclick="javascript: window.location.href='{$basedomain}personalquis';" />	
+							</td>
+				</tr>
+			</table>
+           
+		</div>
+	</div>
+</div>

@@ -1,0 +1,73 @@
+10
+
+dir
+101
+https://acit@kana.svn.beanstalkapp.com/go-ahead-story/trunk/goaheadstory
+https://acit@kana.svn.beanstalkapp.com/go-ahead-story
+
+
+
+2014-03-06T06:23:30.684867Z
+101
+wahyu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+864475e4-7d6c-480b-a1e2-5627f1cf15dc
+
+authentication
+dir
+
+db
+dir
+
+engines
+dir
+
+mop
+dir
+
+templates
+dir
+
+tools
+dir
+
+tmp
+dir
+
+service
+dir
+
+public_html
+dir
+
+logs
+dir
+
+html
+dir
+
+config
+dir
+
+static_html
+dir
+
+admin_html
+dir
+
+com
+dir
+

@@ -1,0 +1,497 @@
+﻿
+<!-- home content -->
+<section class="page_section" id="home">
+    <div class="welcomText-container">
+        <div class="welcomText">
+            <h1>GO AHEAD </br>write your own storY</h1>
+            <p>Hidup memberi kita pilihan. Saat harus memilih untuk mengambil kesempatan atau melewatkan kemungkinan, </br>
+                mana yang harus kita jalani? Lihat dua cerita berikut, cari tau lo tipe Go Ahead seperti apa  
+</br>di ‘Suite Yourself’ dan menangin ilustrasi keren di ‘My Moment’. </p>
+            {if $session !=''}
+			<div class="act-btn">
+           <!--     <a class="button  join" href="#suityourself">Gabung Sekarang</a> -->
+		    <a class="button scrolling" href="#suityourself">Gabung Sekarang</a>
+            </div><!-- end .act-btn --> 
+			{else}
+			<div class="act-btn">
+                <a class="button " href="{$basedomain}goahead?email=testing@yahoo.co.m">login</a>
+            </div><!-- end .act-btn --> 
+			
+			{/if}
+			<input type="hidden" name="gmbr" value="{$imgStatus}" id="gmbr" regimg="{$registerid}" attrid="{$userid}">
+        </div><!-- end .welcomText --> 
+    </div><!-- end .welcomText-container -->  
+    <div class="container">
+        <div class="row" id="videoBox">
+            <div class="col-md-6">
+                <div class="video">
+                	<a href="{$basedomain}?page=videorasakan"><img src="{$basedomain}assets/content/video_rasakan.jpg" />     
+                    <div class="vjs-big-play-button"></div>      </a>         
+                </div><!-- end .video --> 
+                <h4 class="title">#goahead_rasakan</h4>
+            </div><!-- end .col-md-6 --> 
+            <div class="col-md-6">
+                <div class="video">
+                	<a href="{$basedomain}?page=videolepaskan"><img src="{$basedomain}assets/content/video_lepaskan.jpg" />  
+                    <div class="vjs-big-play-button"></div>  </a>                                       
+                </div><!-- end .video -->    
+                <h4 class="title">#goahead_lepaskan</h4>                 
+            </div><!-- end .col-md-6 --> 
+        </div><!-- end .row -->    
+    </div><!-- end .container -->    
+</section>
+{literal}
+	<script>
+	//$("html, body").animate({ scrollTop: $('#suityourself').offset().top }, 1000);
+		$(document).ready(function(){
+				$("#autopopupdetail").trigger("click");
+				var gmbr = $('#gmbr').val();
+				var reggmbr = $('#gmbr').attr('regimg');  
+				var uid = $('#gmbr').attr('attrid');  
+				if(gmbr==0)
+				{
+						$.ajax({
+						type: "POST",
+						url: 'https://www.goaheadpeople.com/api/get_profile_picture',
+						data: {registration_id:reggmbr},
+						dataType: "json", 
+						success: function( comnData ){
+							
+								 $.ajax({
+											type: "POST",
+											url: basedomain+'?page=goahead&act=saveImageUser',
+											data: {uid:uid,uimage:comnData.url},
+											dataType: "json", 
+											success: function( comnData ){
+												//console.log(comnData);
+											}
+						
+						});
+						}
+						
+						});
+				
+				}
+			});
+		$(document).on('click','.join', function()
+		{
+			
+			$.ajax({
+				type: "get",
+				url: basedomain+'goahead/join',
+				dataType: "json",
+				success: function( strData ){
+				
+							if(strData.status==1)
+							{
+								//window.location.href = basedomain+'travia/traviaUser';
+								
+								$('#suityourself').attr('style','display:block;');
+								$("html, body").animate({ scrollTop: $('#suityourself').offset().top }, 1000);
+							}
+							else if(strData.status==2)
+							{
+								alert('anda sudah mengikuti travia');
+								window.location.href = basedomain+'?page=goahead&act=result'; 
+							
+							}
+							else 
+							{
+								alert('anda belum login ,login dulu ya');
+								//window.location.href = basedomain+'travia';
+							
+							}
+						}
+			});
+		
+		});
+		
+	</script>	
+{/literal}
+
+<!-- suityourself content-->
+<section class="page_section" id="suityourself" >
+    <div class="content_section container"> 
+        <div class="row">
+            <div class="suitcase"> 
+                <div class="welcomText-container">
+                    <div class="welcomText">
+                        <p class="f24">Apa yang lo pakai, bisa mendeskripsikan siapa diri lo.<br />
+                            Pilih barang-barang yang mau lo bawa dalam perjalanan,<br />
+                            dan lihat tipe kepribadian lo!</p>
+                    </div><!-- end .welcomText --> 
+                </div><!-- end .welcomText-container -->
+                <div class="koper">
+                    <div class="itemList">
+                        <form class="itemList-form">
+                            <div class="item image1 target">
+                               
+                            </div><!-- end .item --> 
+                            <div class="item image2 target">
+                               
+                            </div><!-- end .item --> 
+                            <div class="item image3 target">
+                               
+                            </div><!-- end .item --> 
+                            <div class="item image4 target">
+                                
+                            </div><!-- end .item --> 
+                            <div class="item image5 target">
+                               
+                            </div><!-- end .item --> 
+                            <a href="#suityourself" class="item btnbox btnsbt btngrey ">SUBMIT &raquo;</a>
+                        	<span class="errormessagetravia " style="display:none">Benda yang lo pilih harus berjumlah 5 buah. Pilih lagi dan submit.</span>
+                        </form>
+                    </div><!-- end .itemList --> 
+                </div><!-- end .koper --> 
+            </div><!-- end .suitcase -->    
+            <div class="suitcaseItem"> 
+                    <div class="itemList">
+                        <div class="itemBox row1">
+                            <div class="item ">
+                                <img src="{$basedomain}assets/images/travia/case_1a.jpg" dataId='1' dataKode='E' row='1'  />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom ">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row1">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_1b.jpg" dataId='2' dataKode='L'  row='1'  />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row2">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_2a.jpg" dataId='3' dataKode='L'  row='2' />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row2">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_2b.jpg" dataId='4' dataKode='E' row='2' />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row3">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_3a.jpg" dataId='5'  dataKode='L'row='3' />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row3">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_3b.jpg" dataId='6' dataKode='E' row='3' />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row4">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_4a.jpg" dataId='7' dataKode='L' row='4'/>
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row4">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_4b.jpg" dataId='8'  dataKode='E' row='4'/>
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row5">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_5a.jpg" dataId='9'  dataKode='L' row='5'/>
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                        <div class="itemBox row5">
+                            <div class="item">
+                                <img src="{$basedomain}assets/images/travia/case_5b.jpg" dataId='10'  dataKode='E'row='5' />
+                            </div><!-- end .item --> 
+                            <div class="itemBottom">
+                                <input type="checkbox" class="imgAll"/>
+                            </div><!-- end .itemBottom --> 
+                         </div><!-- end .itemBox --> 
+                    </div><!-- end .itemList -->           	
+            </div><!-- end .suitcaseItem -->    
+        </div><!-- end .row -->    
+    </div><!-- end .content_section -->    
+</section>
+
+<script>
+ var submittoImg= "{$submittoImg}";
+{literal}	 
+	$(document).ready(function(){
+		
+		$(document).on('click','.imgAll',function()
+		{
+				var img = $(this).parent().parent().find('.item').find('img').attr('src');
+				var imgId = $(this).parent().parent().find('.item').find('img').attr('dataId');
+				var imgKode = $(this).parent().parent().find('.item').find('img').attr('dataKode');
+				var thi = $(this);
+				var row = $(this).parent().parent().find('.item').find('img').attr('row');
+						var sas=0;
+				if ($('.target img').hasClass("images"+imgId))
+				{
+					$(".images"+imgId).remove();
+					
+					$(this).parent().parent().find('.item').removeClass('selected');
+					$(".row"+row).removeClass( "greyscale" );
+					$(".row"+row).children().find('.imgAll').val('');
+					//console.log($(".row"+row).children().find('.imgAll').val(''));
+					$( ".target" ).each(function( index ) {
+						if($(this).find('img').attr('dataid'))
+								{
+									++sas;
+									console.log(sas);
+									if( sas ==4 ){
+										$('.btnsbt').addClass('btngrey');
+									
+									}
+								
+								}
+					});
+				}
+				else
+				{
+					if($(".row"+row).children().find('.imgAll').val() ==1)
+						{
+							
+							$(this).addClass( "disable" );
+							
+							return false;
+						}
+				
+					$( ".target" ).each(function( index ) {
+						
+							if(!$(this).find('img').attr('dataid'))
+								{
+									
+									
+									
+									$(this).append('<img  src="'+img+'" dataId='+imgId+' class="images'+imgId+'" dataKode="'+imgKode+'">');
+									thi.parent().parent().find('.item').addClass('selected');
+									
+									
+									return false;
+								}
+								if($(this).find('img').attr('dataid'))
+								{
+									++sas;
+									if( sas ==4 ){
+										$('.btnsbt').removeClass('btngrey');
+									
+									}
+								
+								}
+					});
+					$( ".row"+row).each(function( index ) {
+						$(this).children().find('.imgAll').val('1');
+						if($(this).find('img').attr('dataid') != imgId)
+						{
+							$(this).addClass( "greyscale" );
+							
+						}
+					
+					});
+					
+				}
+				
+		});
+		$('.btnsbt').click(function()
+		{
+				var phrases=  [];
+				var i=0;
+				var kodeE =0;
+				var kodeL =0;
+				$( ".target" ).each(function( index ) {
+					
+					if($(this).find('img').attr('dataid'))
+					{
+						phrases.push({ 
+										 imagesId : $(this).find('img').attr('dataid'), 
+										 Kode : $(this).find('img').attr('dataKode') 
+								  });
+					
+					}
+					
+					
+			 });
+			
+			 if(phrases.length <5)
+			 {
+				$('.errormessagetravia').addClass('errormessage');
+				$('.errormessagetravia').attr('style','display:block');
+				return false;
+			 }
+			 else
+			 {
+				$('.errormessagetravia').removeClass('errormessage');
+				$('.errormessagetravia').attr('style','display:none');
+			 }
+			 $.ajax({
+				type: "POST",
+				url: basedomain+submittoImg,
+				data: {imgTravia:phrases},
+				dataType: "json",
+				success: function( strData ){
+					
+							if(strData.status==1)
+							{
+								window.location.href = basedomain+'?page=goahead&act=result';
+								
+							}
+							else if(strData.status==0)
+							{
+								alert('hanya sekali saja user eksekusi');
+								//window.location.href =  basedomain+'index/myartwork';
+							}
+							else
+							{
+								alert('ulangi');
+								window.location.href = basedomain+'goahead';
+							}
+						}
+			});
+			 
+		});
+	});
+	
+</script>
+{/literal}
+
+        <!-- submit story content-->
+        <section class="page_section" id="submitstory">   
+        	<div class="submitstory">
+            	<div class="submit-container">
+                	<form class="story-form">
+                    	<p>Share cerita lo tentang pilihan yang berarti dalam hidup, dan bagaimana cara lo ngejalaninnya dengan hashtag #goahead_rasakan atau #goahead_lepaskan</p>
+                        <textarea class="story-message" name="aspiration" id="aspiration"  maxlength="140"></textarea>
+                        <input type="button" value="SUBMIT" class="button btnAapiration" />
+                        <span class="errormessage" style="display:none;">Cek kembali hashtag.</span>
+                    </form>
+                    <div class="story-ex">
+                        <ul id="story-ex">		
+						{if $aspiration}
+						
+						{assign var=a value='0'} 
+						
+									{ section loop=$aspiration name=i}	
+										
+										
+										
+										
+										 <li class="goahead_lepaskan">
+											<div class="col-content">
+												<div class="stories">
+													<h4 class="textUp">{$aspiration[i][0].aspiration}</h4>
+													<p>{$aspiration[i][0].username|upper}</p>
+												</div><!-- end .stories -->    
+											</div><!-- end .col2 -->    
+											<div class="col-sidebar">
+												<div class="stories">
+													<img width="100" src='{$basedomain}public_assets/{$aspiration[i][0].gambar}'>
+												</div><!-- end .stories -->   
+											</div><!-- end .col2 -->    
+										</li>		
+										
+									
+										 <li class="goahead_rasakan">
+											<div class="col-sidebar">
+												<div class="stories">
+												<img width="100" src='{$basedomain}public_assets/{$aspiration[i][1].gambar}'>
+												</div><!-- end .stories -->    
+											</div><!-- end .col2 -->    
+											<div class="col-content">
+												<div class="stories">
+														<h4 class="textUp">{$aspiration[i][1].aspiration}</h4>
+													<p>{$aspiration[i][1].username|upper}</p>
+												</div><!-- end .stories -->   
+											</div><!-- end .col2 -->    
+										</li>		
+										
+									
+									
+									{/section}
+						{/if}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section> 
+	
+<script>
+ var savetoAspiration= "{$savetoAspiration}";
+{literal}	 
+$(document).ready(function(){
+$(document).on('click','.btnAapiration',function()
+		{
+				
+				var aspiration= $('#aspiration').val();
+				var hastags='';
+				if(!aspiration.match(/#goahead_rasakan/gi) && !aspiration.match(/#goahead_lepaskan/gi))
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+				if(aspiration.match(/#goahead_rasakan/gi))
+				{
+					hastags='#goahead_rasakan';
+				
+				}
+				if(aspiration.match(/#goahead_lepaskan/gi))
+				{
+					hastags='#goahead_lepaskan';
+				
+				}
+				if(aspiration.length > 140 )
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+				else
+				{
+					$('.errormessage').attr('style','display:none');
+					
+				}
+				$.ajax({
+						type: "POST",
+						url: basedomain+savetoAspiration,
+						data: {aspiration:aspiration,hastag:hastags},
+						dataType: "json",
+						success: function( comnData ){
+							if(comnData.status==1)
+								{
+									window.location.href = basedomain+'?page=goahead&act=thanks';
+								}
+							else
+								{
+									///alert(comnData.msg);
+								}
+							
+							
+						}
+				
+				});
+		
+		});
+	});
+</script>
+{/literal}
+
+{include file="application/web/apps/artist.html"}

@@ -1,0 +1,93 @@
+﻿
+        <!-- submit story content-->
+        <section class="page_section" id="submitstory">   
+        	<div class="submitstory">
+            	<div class="submit-container">
+                	<form class="story-form">
+                    	<p>Share cerita lo tentang pilihan yang berarti dalam hidup, dan bagaimana cara lo ngejalaninnya dengan hashtag #goahead_rasakan atau #goahead_lepaskan</p>
+                        <textarea class="story-message" name="aspiration" id="aspiration"></textarea>
+                        <input type="button" value="SUBMIT" class="button btnAapiration" />
+                        <span class="errormessage" style="display:none;">Cek kembali hashtag.</span>
+                    </form>
+                    <div class="story-ex">
+                        <ul id="story-ex">		
+						{if $aspiration}
+									{section loop=$aspiration name=i}						
+										 <li>
+											<div class="col2">
+												<div class="stories goahead_lepaskan">
+													<p class="textUp">{$aspiration[i].aspirasi_user}
+													</p>
+													<p>{$aspiration[i].username}</p>
+												</div><!-- end .stories -->    
+											</div><!-- end .col2 -->    
+											<div class="col2">
+												<div class="stories goahead_rasakan">
+													<img src='{basedomain}public_assets/{$aspiration[i].gambar_aspirasi_artist}'>
+												</div><!-- end .stories -->   
+											</div><!-- end .col2 -->    
+										</li>		
+									{/section}
+						{/if}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section> 
+	{literal}
+<script>
+$(document).ready(function(){
+$(document).on('click','.btnAapiration',function()
+		{
+				
+				var aspiration= $('#aspiration').val();
+				var hastags='';
+				if(!aspiration.match(/#goahead_rasakan/) && !aspiration.match(/#goahead_lepaskan/))
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+				if(aspiration.match(/#goahead_rasakan/))
+				{
+					hastags='#goahead_rasakan';
+				
+				}
+				if(aspiration.match(/#goahead_lepaskan/))
+				{
+					hastags='#goahead_lepaskan';
+				
+				}
+				/*if(aspiration.length > 140 )
+				{
+					$('.errormessage').attr('style','display:block');
+					return false;
+				}
+				else
+				{
+					$('.errormessage').attr('style','display:none');
+					
+				}*/
+				$.ajax({
+						type: "POST",
+						url: basedomain+'goahead/saveAspiration',
+						data: {aspiration:aspiration,hastag:hastags},
+						dataType: "json",
+						success: function( comnData ){
+							if(comnData.status==1)
+								{
+									window.location.href = basedomain+'index/thanks';
+								}
+							else
+								{
+									alert(comnData.msg);
+								}
+							
+							
+						}
+				
+				});
+		
+		});
+	});
+</script>
+{/literal}

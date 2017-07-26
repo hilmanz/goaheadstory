@@ -1,0 +1,26 @@
+﻿
+<div id="popup-artist5" class="popup2 popup-artist">
+    <a class="closePopup" href="#">&nbsp;</a>
+    <div class="popup-body">
+        <div class="col2">
+            <div class="entry">
+            	<div class="col-sidebar">
+           			 <div class="thumbArtist">
+           			 	<img src="{$assets_domain}content/Husein.jpg" />
+					</div><!-- .thumbArtist -->
+                </div><!-- .col-sidebar -->
+                <div class="col-content">
+           			 <div class="entries">
+            <h3>Saleh Husein</h3>
+<p>Saleh Husein lahir di Jeddah pada tahun 1982. Setelah SMU, dia melanjutkan studi di Institut Kesenian Jakarta. Selain dikenal sebagai gitaris band ternama "White Shoes and the Couples Company" dan "the Adams" dia juga aktif dalam berbagai kegiatan seni seperti Jakarta Biennale XIII 2009: ARENA; Occupying Space: Performance Art Event ASEAN. </p><p>Oktober 2012 dia mengadakan pameran tunggal pertamanya dengan judul "Riwayat Saudagar". Pada tahun 2014, dia berpartisipasi dalam eksibisi berjudul "1x25jam" di Yogyakarta.</p>
+					</div><!-- .entries -->
+				</div><!-- .col-content -->
+            </div><!-- .col2 -->
+        </div><!-- .col2 -->
+        <div class="col2">
+            <div class="imgdetail">
+            <img src="{$assets_domain}content/artist5_original.jpg" />
+            </div><!-- .imgdetail-->
+        </div><!-- .col2-->
+    </div><!-- .popup-body-->
+</div><!-- .popup -->

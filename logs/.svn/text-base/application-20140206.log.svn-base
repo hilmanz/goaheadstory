@@ -1,0 +1,6 @@
+2014-02-06 14:23:55 SELECT * FROM social_member WHERE username='aruka' LIMIT 1
+2014-02-06 14:23:55 cannot login, password or username not exists 
+2014-02-06 14:24:18 SELECT * FROM social_member WHERE username='username' LIMIT 1
+2014-02-06 14:24:18 cannot login, password or username not exists 
+2014-02-06 14:24:39 SELECT * FROM social_member WHERE username='aruka' LIMIT 1
+2014-02-06 14:24:39 cannot login, password or username not exists 

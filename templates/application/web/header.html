@@ -1,0 +1,40 @@
+﻿<section id="top">
+    <header>                      
+        <nav class="navmenu">
+               {if $page==''}
+        		<a class="scrolling" id="logo" href="{$basedomain}">&nbsp;</a>
+			  { else}
+        		<a class="scrolling" id="logo" href="{$basedomain}">&nbsp;</a>
+              {/if}
+            <ul id="navigation" class="sf-menu">
+               {if $page==''}
+                <li><a class="scrolling" href="{$basedomain}?page=goahead#suityourself">Suit yourself</a></li>
+                <li><a class="scrolling" href="{$basedomain}?page=goahead#submitstory">My Moment</a></li>
+                <li><a href="{$basedomain}?page=goahead&act=gallery">Gallery</a>
+                	<ul>
+                    	<li><a href="{$basedomain}?page=goahead&act=gallery">View All</a></li>
+                    	<li><a href="{$basedomain}?page=goahead&act=winner">Story of the week</a></li>
+                    </ul>
+                </li>
+                <li><a class="scrolling" href="{$basedomain}?page=goahead#artist">Artists</a></li>
+                <li><a href="{$basedomain}?page=goahead&act=termCondition">Terms &amp; Conditions</a></li>
+               
+               
+			  { else}
+                <li><a class="scrolling" href="{$basedomain}?page=goahead#suityourself">Suit yourself</a></li>
+                <li><a class="scrolling" href="{$basedomain}?page=goahead#submitstory">My Moment</a></li>
+                <li><a href="{$basedomain}goahead/gallery">Gallery</a>
+                	<ul>
+                    	<li><a href="{$basedomain}?page=goahead&act=gallery">View All</a></li>
+                    	<li><a href="{$basedomain}?page=goahead&act=winner">Story of the week</a></li>
+                    </ul>
+                </li>
+                <li><a class="scrolling" href="{$basedomain}?page=goahead&act=artist">Artists</a></li>
+                <li><a href="{$basedomain}?page=goahead$act=termCondition">Terms &amp; Conditions</a></li>
+                
+              {/if}
+            </ul>
+           
+        </nav><!-- end nav --> 
+    </header>         
+</section><!-- //header section -->

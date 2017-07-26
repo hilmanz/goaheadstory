@@ -1,0 +1,42 @@
+﻿
+<!-- Artist content -->
+<section class="page_section" id="artist">
+    <div class="artist-container">
+        <div class="artist-box">
+            <a href="#popup-artist" class="showPopup2"><img src="{$assets_domain}content/artist1.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Anton Ismael</h4>
+        </div><!-- .artist-box -->
+        <div class="artist-box">
+            <a href="#popup-artist2" class="showPopup2"><img src="{$assets_domain}content/artist2.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Ade Darmawan</h4>
+        </div><!-- .artist-box -->
+        <div class="artist-box">
+            <a href="#popup-artist3" class="showPopup2"><img src="{$assets_domain}content/artist3.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Oomleo</h4>
+        </div><!-- .artist-box -->
+        <div class="artist-box">
+            <a href="#popup-artist4" class="showPopup2"><img src="{$assets_domain}content/artist4.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Jimi Multhazam</h4>
+        </div><!-- .artist-box -->
+        <div class="artist-box">
+            <a href="#popup-artist5" class="showPopup2"><img src="{$assets_domain}content/artist5.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Saleh Husein</h4>
+        </div><!-- .artist-box -->
+        <div class="artist-box">
+            <a href="#popup-artist6" class="showPopup2"><img src="{$assets_domain}content/artist6.jpg" /></a>
+            <span class="overlays">&nbsp;</span>
+            <h4>Kiko Ardiansjah</h4>
+        </div><!-- .artist-box -->
+       {include file="application/web/widgets/popup-artist.html"}
+       {include file="application/web/widgets/popup-artist2.html"}
+       {include file="application/web/widgets/popup-artist3.html"}
+       {include file="application/web/widgets/popup-artist4.html"}
+       {include file="application/web/widgets/popup-artist5.html"}
+       {include file="application/web/widgets/popup-artist6.html"}
+    </div><!-- .artist-container -->
+</section>
